@@ -1,18 +1,15 @@
-# tape-jsx-extensions
-
-[![npm](https://img.shields.io/npm/v/tape-jsx-extensions.svg)](https://www.npmjs.com/package/tape-jsx-extensions)
-[![npm](https://img.shields.io/npm/l/tape-jsx-extensions.svg)](https://www.npmjs.com/package/tape-jsx-extensions)
+# tape-react-extensions
 
 [Tape](https://github.com/substack/tape) [extensions](https://github.com/atabel/extend-tape) collection to make React component easier to test.
 
 ## Install
 ```
 $ npm install --save-dev extend-tape
-$ npm install --save-dev tape-jsx-extensions
+$ npm install --save-dev tape-react-extensions
 ```
 ## How to use
 
-Testing React components is very easy with `tape` + `tape-jsx-extensions`:
+Testing React components is very easy with `tape` + `tape-react-extensions`:
 
 ```javascript
 const MyComponent = function ({color}) {
@@ -24,10 +21,10 @@ const MyComponent = function ({color}) {
 ```
 
 ```javascript
-import {createRenderer} from 'react-addons-test-utils';
 import tape from 'tape';
 import addAssertions from 'extend-tape';
-import jsxExtensions from 'tape-jsx-extensions';
+import jsxExtensions from 'tape-react-extensions';
+import {createRenderer} from 'react-test-renderer/shallow';
 import MyComponent from '../MyComponent';
 
 // extend tape with jsx extensions:
@@ -46,7 +43,10 @@ test('MyComponent is properly rendered', (t) => {
 
 ## Assert methods
 
-- [`t.jsxEquals(jsx, expectedJsx)`](https://github.com/atabel/tape-jsx-equals)
+- `t.jsxEquals(jsx, expectedJsx)` - Checks that the component's rendered output matches expected output
+- `t.jsxNotEquals(jsx, expectedJsx)` - Checks that the component's rendered output does NOT match expected output
+- `t.jsxIncludes(jsx, expectedJsx)` - Checks that the component's rendered output includes expected output
+- `t.jsxNotIncludes(jsx, expectedJsx)` - Checks that the component's rendered output does NOT include expected output
 
 ## Run tests
 ```

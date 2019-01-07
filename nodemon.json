@@ -1,0 +1,8 @@
+{
+  "quiet": true,
+  "ignore": ["node_modules"],
+  "watch": ["./src", "./test"],
+  "execMap": {
+    "js": "clear && cross-env NODE_ENV=test tape --require=@babel/register test/index.js | faucet"
+  }
+}
