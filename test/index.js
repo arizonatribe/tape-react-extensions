@@ -6,6 +6,14 @@ import jsxExtensions from '../src/index'
 
 const test = addAssertions(tape, jsxExtensions)
 
+const SomeComponent = () =>
+  <div>
+    <h1>Welcome!</h1>
+    <p>Glad you decided to visit us</p>
+  </div>
+
+const SomeNull = () => null
+
 const renderer = createRenderer()
 const render = jsx => {
   renderer.render(jsx)
@@ -23,6 +31,34 @@ test('jsxEquals', t => {
     render(<MyComponent color="red" />),
     <div className="box color-red" />,
     'Two components are equal'
+  )
+  t.end()
+})
+
+test('jsxEquals', t => {
+  t.jsxEquals(
+    render(<SomeComponent />),
+    // eslint-disable-next-line
+    <div><h1>Welcome!</h1><p>Glad you decided to visit us</p></div>,
+    'More complex multi-line JSX components are equal'
+  )
+  t.end()
+})
+
+test('jsxNotEquals', t => {
+  t.jsxNotEquals(
+    render(<SomeComponent />),
+    null,
+    'Two components are not equal'
+  )
+  t.end()
+})
+
+test('jsxNotEquals', t => {
+  t.jsxNotEquals(
+    render(<SomeNull />),
+    undefined,
+    'Components that return nil'
   )
   t.end()
 })

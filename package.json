@@ -1,6 +1,6 @@
 {
   "name": "tape-react-extensions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Collection of tape assertion to work with JSX",
   "main": "dist/index.js",
   "scripts": {
